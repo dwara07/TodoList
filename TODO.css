@@ -1,0 +1,544 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: black;
+  overflow: hidden;
+}
+
+.taskItem {
+  background-color: white;
+  color: black;
+  border-radius: 6px;
+
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.h1-ele {
+  font-size: 38px;
+  font-family: "Merriweather", serif;
+  font-weight: 1000px;
+}
+
+.wrapper {
+  margin-top: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #f8f8fd;
+  filter: drop-shadow(1px 20px 20px black);
+  border-radius: 10px;
+  height: 50vh;
+
+
+}
+
+.wrapper h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+
+}
+
+#taskPriority {
+  padding: 0.8em 1.0em;
+  border-radius: 20px;
+}
+
+input {
+  margin-top: 16px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+input.text {
+  padding: 10px;
+  width: 300px;
+  margin-right: 10px;
+}
+
+button.button {
+  padding: 10px 20px;
+}
+
+.taskList {
+  margin-top: 20px;
+}
+
+.taskItem {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 20px;
+  align-items: center;
+}
+
+.taskItem span {
+  margin-right: 15px;
+}
+
+.taskItem button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.editButton {
+  padding: 8px 10px 10px 8px;
+  background-color: grey;
+}
+
+.editButton:hover {
+  background-color: grey;
+  transform: scale(1.05);
+}
+
+
+.completedButton {
+  padding: 8px 10px 10px 8px;
+  background-color: grey;
+}
+
+.completedButton:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+
+.light-background {
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: background-color 0.3s ease;
+}
+
+
+.confirmation {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#addTaskButton {
+  cursor: pointer;
+  font-size: large;
+  font-family: inherit;
+  font-weight: bold;
+  color: #a6ae40;
+  background-color: #f8f8fd;
+  padding: 0.2em 1.2em;
+  border-radius: 50em;
+  border: 6px solid#a6ae40;
+  box-shadow: 0px 8px #a6ae40;
+}
+
+#addTaskButton:active {
+  position: relative;
+  top: 8px;
+  border: 6px solid #a6ae40;
+  box-shadow: 0px 0px;
+}
+
+
+
+.confirmation.show {
+  background-color: #333;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  padding: 30px;
+  filter: drop-shadow(1px 20px 20px black);
+  border-radius: 10px;
+  height: 18vh;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.confirmation.show.p {
+  padding-bottom: 20px;
+}
+
+#confirmDeleteButton {
+  background-color: #f44336;
+  color: white;
+  padding: 0.9em 1.6em;
+  ;
+  border: none;
+  border-radius: 5px;
+}
+
+#cancelDeleteButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.9em 1.6em;
+  ;
+  border: none;
+  border-radius: 5px;
+
+}
+
+.confirmation p {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+}
+
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.textClass {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.deleteButton:hover {
+  width: 125px;
+  border-radius: 40px;
+  background-color: rgba(250, 61, 61, 0.693);
+  transition-duration: .3s;
+}
+
+.deleteButton:hover .sign {
+  position: relative;
+  opacity: 0;
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+
+.deleteButton:hover .textClass {
+  opacity: 1;
+  width: 100%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.deleteButton:active {
+  transform: translate(2px, 2px);
+}
+
+
+
+.completeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s, background-color 0.3s, border-radius 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(73, 184, 90);
+}
+
+.sign3 i {
+  font-size: 20px;
+  color: black;
+  transition: opacity 0.3s ease;
+}
+.textClass3 {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: width 0.3s, opacity 0.3s ease;
+  padding-right: 10px;
+}
+
+.completeButton:hover {
+  width: 120px;
+  border-radius: 40px;
+  background-color: rgb(73, 184, 90);
+}
+
+.completeButton:hover .sign3 {
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.completeButton:hover .textClass3 {
+  opacity: 1;
+  width: 100%;
+  padding-right: 10px;
+}
+
+.completeButton:active {
+  transform: translate(2px, 2px);
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgba(250, 209, 61, 0.693);
+}
+
+.sign2 {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign2 i {
+  width: 17px;
+  color: black;
+}
+
+.textClass2 {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+  padding-right: 10px;
+
+}
+
+.editButton:hover {
+  width: 125px;
+  border-radius: 40px;
+  background-color: rgba(250, 209, 61, 0.693);
+  transition-duration: 0.3s;
+}
+
+.editButton:hover .sign2 {
+  position: relative;
+  opacity: 0;
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+.editButton:hover .textClass2 {
+  opacity: 1;
+  width: 100%;
+  transition-duration: .3s;
+  padding-right: 10px;
+
+}
+
+.editButton:active {
+  transform: translate(2px, 2px);
+
+}
+
+#tourBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  display: none;
+}
+
+#tourDescription {
+  color: black;
+}
+
+#tourContainer {
+  position: absolute;
+  background-color: white;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  max-width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tour-content {
+  position: relative;
+  padding-right: 30px;
+}
+
+#tourContainer i {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: #3498db;
+}
+
+.tour-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.tour-buttons button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tour-buttons button:disabled {
+  background-color: #ddd;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+#startTourButton {
+  --border-radius: 15px;
+  --border-width: 4px;
+  appearance: none;
+  position: relative;
+  padding: 0.5em 1em;
+  border: 0;
+  background-color: #212121;
+  font-family: "Roboto", Arial, "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  z-index: 2;
+}
+
+#startTourButton::after {
+  --m-i: linear-gradient(#000, #000);
+  --m-o: content-box, padding-box;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: var(--border-width);
+  border-radius: var(--border-radius);
+  background-image: conic-gradient(#488cfb,
+      #29dbbc,
+      #ddf505,
+      #ff9f0e,
+      #e440bb,
+      #655adc,
+      #488cfb);
+  -webkit-mask-image: var(--m-i), var(--m-i);
+  mask-image: var(--m-i), var(--m-i);
+  -webkit-mask-origin: var(--m-o);
+  mask-origin: var(--m-o);
+  -webkit-mask-clip: var(--m-o);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  filter: hue-rotate(0);
+  animation: rotate-hue linear 500ms infinite;
+  animation-play-state: paused;
+}
+
+#startTourButton:hover::after {
+  animation-play-state: running;
+}
+
+@keyframes rotate-hue {
+  to {
+    filter: hue-rotate(1turn);
+  }
+}
+
+#startTourButton,
+#startTourButton::after {
+  box-sizing: border-box;
+}
+
+#startTourButton:active {
+  --border-width: 5px;
+}
